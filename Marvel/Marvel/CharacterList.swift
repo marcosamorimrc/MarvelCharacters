@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SDWebImage
 import CommonCrypto
+import NVActivityIndicatorView
 
 class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource{
     
@@ -19,6 +20,7 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
     @IBOutlet weak var searchButton: UIBarButtonItem!
     @IBOutlet weak var charactersTableView: UITableView!
     
+    var activityIndicatorView: NVActivityIndicatorView!
     
     lazy   var searchBar:UISearchBar = UISearchBar(frame: CGRect(x: 8, y: 0, width: 300, height: 30))
     var charactersArray: NSMutableArray = []
@@ -59,8 +61,12 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
         charactersTableView.tableHeaderView = UIView(frame: frame)
         
         charactersTableView.separatorInset = .zero
-//        charactersTableView.layoutMargins = .zero
         
+        let frameCenter = CGRect(x: view.center.x - 15, y: view.center.y - 15, width: 30, height: 30)
+        self.activityIndicatorView = NVActivityIndicatorView(frame: frameCenter, type: .lineSpinFadeLoader, color: .white, padding: nil)
+        self.view.addSubview(activityIndicatorView)
+        
+        activityIndicatorView.startAnimating()
     }
     
     func loadCharacters(offset: Int){
@@ -82,6 +88,7 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
             switch response.result {
             case .success:
                 print("Success")
+                self.activityIndicatorView.stopAnimating()
                 if let json = response.result.value {
 
                     let data = (json as! NSDictionary)["data"]!
@@ -103,6 +110,7 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
                 }
             case .failure(_):
                 print("Failure")
+                self.activityIndicatorView.stopAnimating()
             }
         }
         
@@ -129,6 +137,7 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
             switch response.result {
             case .success:
                 print("Success")
+                self.activityIndicatorView.stopAnimating()
                 if let json = response.result.value {
                     
                     let data = (json as! NSDictionary)["data"]!
@@ -151,6 +160,7 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
                 }
             case .failure(_):
                 print("Failure")
+                self.activityIndicatorView.stopAnimating()
             }
         }
         
