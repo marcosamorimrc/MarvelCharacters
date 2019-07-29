@@ -172,7 +172,7 @@ class CharacterAppearances: UIViewController, UIScrollViewDelegate{
         pagesLabel.text = ("\(pageIndex)/\(totalAppearances ?? CharacterAppearances.count)")
         currentPage = pageIndex
         
-        if pageIndex == CharacterAppearances.count - 2{
+        if pageIndex == CharacterAppearances.count - 4{
             if !stopSearching{
                 stopSearching = true;
                 loadCharacterAppearances(id: appearance_ID, offset: CharacterAppearances.count)
