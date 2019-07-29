@@ -20,8 +20,9 @@
 		E7EA2DD822E657A0009FD612 /* extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA2DD722E657A0009FD612 /* extensions.swift */; };
 		E7EA2DDF22E7A2D0009FD612 /* CharacterDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA2DDE22E7A2D0009FD612 /* CharacterDetails.swift */; };
 		E7EA2DE122E90673009FD612 /* CharacterAppearances.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA2DE022E90673009FD612 /* CharacterAppearances.swift */; };
-		E7EA2DE322E9197B009FD612 /* Comic.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EA2DE222E9197B009FD612 /* Comic.xib */; };
-		E7EA2DE522E919A8009FD612 /* Comic.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA2DE422E919A8009FD612 /* Comic.swift */; };
+		E7EA2DE722EA36C3009FD612 /* CharacterAppearancesMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA2DE622EA36C3009FD612 /* CharacterAppearancesMenu.swift */; };
+		E7EA2DE922EA4855009FD612 /* Appearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = E7EA2DE822EA4855009FD612 /* Appearance.xib */; };
+		E7EA2DEB22EA48B1009FD612 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7EA2DEA22EA48B1009FD612 /* Appearance.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,8 +67,9 @@
 		E7EA2DD722E657A0009FD612 /* extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = extensions.swift; sourceTree = "<group>"; };
 		E7EA2DDE22E7A2D0009FD612 /* CharacterDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetails.swift; sourceTree = "<group>"; };
 		E7EA2DE022E90673009FD612 /* CharacterAppearances.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAppearances.swift; sourceTree = "<group>"; };
-		E7EA2DE222E9197B009FD612 /* Comic.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Comic.xib; sourceTree = "<group>"; };
-		E7EA2DE422E919A8009FD612 /* Comic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comic.swift; sourceTree = "<group>"; };
+		E7EA2DE622EA36C3009FD612 /* CharacterAppearancesMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterAppearancesMenu.swift; sourceTree = "<group>"; };
+		E7EA2DE822EA4855009FD612 /* Appearance.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Appearance.xib; sourceTree = "<group>"; };
+		E7EA2DEA22EA48B1009FD612 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		E850DCE4D0DAD4784ABA4A13 /* Pods-MarvelUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarvelUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarvelUITests/Pods-MarvelUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 				E7EA2DA922E63FAA009FD612 /* AppDelegate.swift */,
 				E7EA2DAB22E63FAA009FD612 /* CharacterList.swift */,
 				E7EA2DDE22E7A2D0009FD612 /* CharacterDetails.swift */,
+				E7EA2DE622EA36C3009FD612 /* CharacterAppearancesMenu.swift */,
 				E7EA2DE022E90673009FD612 /* CharacterAppearances.swift */,
 				E7EA2DAD22E63FAA009FD612 /* Main.storyboard */,
 				E7EA2DB022E63FAC009FD612 /* Assets.xcassets */,
@@ -182,8 +185,8 @@
 		E7EA2DD922E65DC2009FD612 /* Xib */ = {
 			isa = PBXGroup;
 			children = (
-				E7EA2DE222E9197B009FD612 /* Comic.xib */,
-				E7EA2DE422E919A8009FD612 /* Comic.swift */,
+				E7EA2DE822EA4855009FD612 /* Appearance.xib */,
+				E7EA2DEA22EA48B1009FD612 /* Appearance.swift */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -297,9 +300,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7EA2DB422E63FAC009FD612 /* LaunchScreen.storyboard in Resources */,
-				E7EA2DE322E9197B009FD612 /* Comic.xib in Resources */,
 				E7EA2DB122E63FAC009FD612 /* Assets.xcassets in Resources */,
 				E7EA2DAF22E63FAA009FD612 /* Main.storyboard in Resources */,
+				E7EA2DE922EA4855009FD612 /* Appearance.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -364,11 +367,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Marvel/Pods-Marvel-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,10 +407,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				E7EA2DE122E90673009FD612 /* CharacterAppearances.swift in Sources */,
-				E7EA2DE522E919A8009FD612 /* Comic.swift in Sources */,
 				E7EA2DAC22E63FAA009FD612 /* CharacterList.swift in Sources */,
 				E7EA2DAA22E63FAA009FD612 /* AppDelegate.swift in Sources */,
 				E7EA2DDF22E7A2D0009FD612 /* CharacterDetails.swift in Sources */,
+				E7EA2DEB22EA48B1009FD612 /* Appearance.swift in Sources */,
+				E7EA2DE722EA36C3009FD612 /* CharacterAppearancesMenu.swift in Sources */,
 				E7EA2DD822E657A0009FD612 /* extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,6 +628,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4JKFH9GZL9;
 				INFOPLIST_FILE = MarvelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -643,6 +650,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4JKFH9GZL9;
 				INFOPLIST_FILE = MarvelTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -34,12 +34,12 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
         isSearching = false
         stopSearching = false
         
-        formataLayout()
+        formatLayout()
         loadCharacters(offset: 0)
         
     }
     
-    func formataLayout() {
+    func formatLayout() {
         
         var logo = UIImage(named: "logomarvel.png")
         logo = logo?.resizeImage(newSize: CGSize(width: 82, height: 29))
@@ -77,7 +77,7 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
             charactersArray.removeAllObjects()
         }
         
-        print("url : \(url)")
+        cancelRequests()
         Alamofire.request(url).validate().responseJSON  { response in
             switch response.result {
             case .success:
@@ -116,13 +116,15 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
         let hash = "\(ts)\(key2)\(key1)".md5()
         let url = "https://gateway.marvel.com:443/v1/public/characters?offset=\(offset)&nameStartsWith=\(name)&ts=\(ts)&apikey=\(key1)&hash=\(hash!)"
         
+        print(url)
+        
         if offset == 0 {
             charactersTableView.separatorStyle = .singleLine
             isSearching = true
             charactersArray.removeAllObjects()
         }
         
-        print("url : \(url)")
+        cancelRequests()
         Alamofire.request(url).validate().responseJSON  { response in
             switch response.result {
             case .success:
@@ -155,8 +157,17 @@ class CharacterList: UIViewController, UISearchBarDelegate, UITableViewDelegate,
         
     }
     
+    func cancelRequests(){
+        Alamofire.SessionManager.default.session.getTasksWithCompletionHandler { (sessionDataTask, uploadData, downloadData) in
+            sessionDataTask.forEach { $0.cancel() }
+            uploadData.forEach { $0.cancel() }
+            downloadData.forEach { $0.cancel() }
+        }
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+        cancelRequests()
         if searchText == "" {
             self.loadCharacters(offset: 0)
         }else{

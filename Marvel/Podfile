@@ -8,6 +8,7 @@ target 'Marvel' do
   # Pods for Marvel
     pod 'Alamofire', '~> 4.4’
     pod 'SDWebImage', '~>3.8'
+    pod 'NVActivityIndicatorView'
 
 
   target 'MarvelTests' do

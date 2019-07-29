@@ -65,13 +65,17 @@ class CharacterDetails: UIViewController{
     
     @IBAction func appearancesBtnAction(_ sender: Any) {
         
-        guard let myVC = self.storyboard?.instantiateViewController(withIdentifier: "CharacterAppearances") else { return }
-        let navController = UINavigationController(rootViewController: myVC)
+        self.performSegue(withIdentifier: "showAppearancesMenu", sender: self)
         
-        (myVC as! CharacterAppearances).CharacterInfo = CharacterInfo
         
-        self.navigationController?.present(navController, animated: true, completion: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "showAppearancesMenu"{
+            let destinationVC = segue.destination as! CharacterAppearancesMenu
+            destinationVC.CharacterInfo = CharacterInfo
+        }
     }
     
 }
