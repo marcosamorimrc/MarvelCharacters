@@ -89,7 +89,7 @@ class CharacterAppearances: UIViewController, UIScrollViewDelegate{
         let key1 = "43e5847cc852d80327cc0131276d8942"
         let key2 = "6b5a8bd485c6e851ff51d69c7e9a13113216315f"
         let hash = "\(ts)\(key2)\(key1)".md5()
-        let url = "https://gateway.marvel.com:443/v1/public/\(appearanceType!)?offset=\(offset)&characters=\(characterID!)&ts=\(ts)&apikey=\(key1)&hash=\(hash!)"
+        let url = "https://gateway.marvel.com:443/v1/public/\(appearanceType!)?offset=\(offset)&characters=\(characterID!)&limit=10&ts=\(ts)&apikey=\(key1)&hash=\(hash!)"
         
         print("url : \(url)")
         Alamofire.request(url).validate().responseJSON  { response in
@@ -127,6 +127,7 @@ class CharacterAppearances: UIViewController, UIScrollViewDelegate{
             case .failure(_):
                 print("Failure")
                 self.activityIndicatorView.stopAnimating()
+                self.alertErrorLoading()
             }
         }
         
@@ -183,6 +184,17 @@ class CharacterAppearances: UIViewController, UIScrollViewDelegate{
     func alertNoAppearances(appearanceType: String) {
         
         let alert = UIAlertController(title: "No appearances", message: "No \(appearanceType) found for this character.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            self.closeViewController(self)
+        }))
+        self.present(alert, animated: true)
+        
+    }
+    
+    func alertErrorLoading() {
+        
+        let alert = UIAlertController(title: "Error", message: "Could not load appearances, check if you are connected to the internet.", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
             self.closeViewController(self)
